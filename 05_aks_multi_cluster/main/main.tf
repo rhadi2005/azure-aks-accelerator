@@ -2,7 +2,8 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=2.48.0"
+      #version = "=2.48.0"      
+      version = "~> 3.50.0"
     }
   }
 }
@@ -11,7 +12,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "learnk8sResourceGroup-${var.env_name}"
+  name     = "rmt-rg-aks-iac-${var.env_name}"
   location = "northeurope"
 }
 
@@ -26,14 +27,18 @@ resource "azurerm_kubernetes_cluster" "cluster" {
     node_count = "1"
     vm_size    = var.instance_type
   }
+  
   identity {
     type = "SystemAssigned"
   }
-  addon_profile {
-    http_application_routing {
-      enabled = true
-    }
-  }
+
+  http_application_routing_enabled = true
+
+  # addon_profile {
+  #   http_application_routing {
+  #     enabled = true
+  #   }
+  # }
 }
 
 
