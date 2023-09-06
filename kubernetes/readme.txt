@@ -2,12 +2,12 @@
 https://github.com/paulbouwer/hello-kubernetes
 image: paulbouwer/hello-kubernetes:1.8
 
-az aks get-credentials --resource-group rmt-rg-aks-iac-dev --name rmt-aks-iac-dev
-    Merged "rmt-aks-iac-dev" as current context in /home/ubuntu/.kube/config
+az aks get-credentials --resource-group rmt-rg-aks-iac --name rmt-aks-iac
+    Merged "rmt-aks-iac" as current context in /home/ubuntu/.kube/config
 
 kubectl get nodes
 
-export KUBECONFIG="${PWD}/../05_aks_multi_cluster/kubeconfig-dev"
+export KUBECONFIG="${PWD}/../02_aks_cluster/kubeconfig"
 kubectl get node --kubeconfig $KUBECONFIG
 
 kubectl apply -f deployment.yaml
