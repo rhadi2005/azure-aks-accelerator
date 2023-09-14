@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        KUBECONFIG = credentials('172e8deb-2b4a-4f4c-b794-9d33370f51ea') // ID d'identification Kubeconfig dans Jenkins
+        KUBECONFIG = credentials('f8c672e4-eb39-46cb-aa16-4ce8c3348e01') // ID d'identification Kubeconfig dans Jenkins
         K8S_NAMESPACE = 'default' //  le nom de votre namespace Kubernetes
         K8S_DEPLOYMENT = 'drupal' // le nom de votre déploiement Kubernetes
     }
