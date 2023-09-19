@@ -11,7 +11,14 @@ pool:
 
 steps:
 - script: echo Hello, world    test !
-  displayName: 'Run a one-line script'
+    # Set the AKS context
+    az aks get-credentials --resource-group rmt-rg-aks-iac --name rmt-aks-iac
+    #az aks get-credentials --resource-group $aksResourceGroup --name $aksClusterName
+
+    # Deploy Drupal and MySQL to AKS
+    kubectl apply -f drupal-deployment.yaml
+    kubectl apply -f mysql-deployment.yaml
+  displayName: 'Build Drupal App'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
